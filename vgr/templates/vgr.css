@@ -1,18 +1,9 @@
- #gamerec { font-family: 'Black Ops One';
-            position: absolute;
-	left: 25%;
-	top: 7%;
+ #gamerec { 
+ 	position: absolute;
+	left: 26%;
+	top: 30%;
 	width: 50%;
-	text-align: center; 
-	color: orange; 
-	font-size: 150px;
-
   }
-
-
- .boxed{
- 	border: 4px solid white;
- }
 
  .backgroundColor { 
  	background-color: lightblue 
