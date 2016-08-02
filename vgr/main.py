@@ -30,11 +30,11 @@ class MainHandler(webapp2.RequestHandler):
 			greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
 				(user.nickname(), users.create_logout_url('/')))
 		else:
-			greeting = ('<a href="%s"> Sign in or register</a>.' %
+			greeting = ('<a href="%s"> Sign in or register</a>' %
 				users.create_login_url('/'))
 
-		user_data = {'user' : greeting}
-		#self.response.out.write('<html><body>%s</body></html>' % greeting)
+		user_data = {'user':greeting}
+		# self.response.out.write('<html><body>%s</body></html>' % greeting)
 		self.response.out.write(template.render(user_data))
 
 class ResultsHandler(webapp2.RequestHandler):
