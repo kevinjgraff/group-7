@@ -59,13 +59,14 @@ class ResultsHandler(webapp2.RequestHandler):
 			variable_id = pages
 			print variable_id
 			break 
-		
+
 
 		#for key in content_obj['query']['pages']['variable_id']['revisions'][0]['*']:
 		#	game_page = key
 
 		wiki_begin_page = content_obj['query']['pages'][variable_id]['revisions'][0]['*']
 		print 'test'
+		
 		
 		
 
