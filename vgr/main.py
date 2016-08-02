@@ -42,9 +42,12 @@ class MainHandler(webapp2.RequestHandler):
 class ResultsHandler(webapp2.RequestHandler):
 	def get(self):
 
-		#base_url = 'https://en.wikipedia.org/w/api.php?'
-		#url_params = {'q': self.request.get('query'), 'action': 'query', , 'format' : 'json'}
-		response = urllib2.urlopen("https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json")
+		base_url = 'https://en.wikipedia.org/w/api.php?'
+		url_params = {'titles': self.request.get('query'), 'action': 'query', 'prop' : 'revisions', 'rvprop' : 'content' , 'format' : 'json'}
+		#response = urllib2.urlopen("https://en.wikipedia.org/w/api.php? action=query &titles=Main%20Page &prop=revisions &rvprop=content &format=json")
+		resource = base_url + urllib.urlencode(url_params)
+		print resource
+		response = urllib2.urlopen(resource)
 		content = response.read()
 		print content
 		content_obj = json.loads(content)
