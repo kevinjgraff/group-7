@@ -57,18 +57,24 @@ class ResultsHandler(webapp2.RequestHandler):
 
 		for pages in content_obj['query']['pages']:
 			variable_id = pages
-			print variable_id
 			break 
 
 
 		#for key in content_obj['query']['pages']['variable_id']['revisions'][0]['*']:
 		#	game_page = key
-
+		print variable_id
 		wiki_begin_page = content_obj['query']['pages'][variable_id]['revisions'][0]['*']
 		print 'test'
+		print wiki_begin_page
 		
-		
-		
+		genreIndex = wiki_begin_page.find("genre")
+
+		print wiki_begin_page[genreIndex:genreIndex+100]
+
+		genreUnformatted = wiki_begin_page[genreIndex : genreIndex + 200]
+		genre = genreUnformatted[ (genreUnformatted.find("|")+1) : genreUnformatted.find("]")]
+
+		print genre
 
 		template = env.get_template('results.html')
 		self.response.write(template.render())
