@@ -20,16 +20,29 @@ import json
 import os
 import urllib2
 import urllib
+from google.appengine.api import users
+
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
 class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        template = env.get_template('vgr.html')
-        self.response.out.write(template.render())
+	def get(self):
+		template = env.get_template('vgr.html')
+		user = users.get_current_user()
+		if user:
+			greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+				(user.nickname(), users.create_logout_url('/')))
+		else:
+			greeting = ('<a href="%s"> Sign in or register</a>.' %
+				users.create_login_url('/'))
+
+		user_data = {'user' : greeting}
+		#self.response.out.write('<html><body>%s</body></html>' % greeting)
+		self.response.out.write(template.render(user_data))
 
 class ResultsHandler(webapp2.RequestHandler):
 	def get(self):
+<<<<<<< HEAD
 		#base_url = 'https://en.wikipedia.org/w/api.php?'
 		#url_params = {'q': self.request.get('query'), 'action': 'query', , 'format' : 'json'}
 		response = urllib2.urlopen("https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json")
@@ -42,6 +55,8 @@ class ResultsHandler(webapp2.RequestHandler):
 		print content_obj
 
 
+=======
+>>>>>>> origin/master
 		template = env.get_template('results.html')
 		self.response.write(template.render(content_obj))
 
@@ -60,10 +75,11 @@ class Page4Handler(webapp2.RequestHandler):
 		template = env.get_template('page4.html')
 		self.response.write(template.render())
 
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
-    ('/page2', Page2Handler),
-    ('/page3', Page3Handler),
-    ('/page4', Page4Handler),
-    ('/results', ResultsHandler)
+	('/', MainHandler),
+	('/page2', Page2Handler),
+	('/page3', Page3Handler),
+	('/page4', Page4Handler),
+	('/results', ResultsHandler)
 ], debug=True)

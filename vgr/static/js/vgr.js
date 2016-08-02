@@ -1,4 +1,4 @@
-   
+
 
 
   $(.getJSON('https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json', 
@@ -12,7 +12,8 @@
 
 
 
-  // 
+
+  
 
 //   $("#navbar > ul > li").click(function(){
 //     $("#navbar > ul > li").removeClass("active");
@@ -28,4 +29,4 @@
 	$('#submit').click(something)
   }
 
-$(document).ready(setup)
+  $(document).ready(setup)
