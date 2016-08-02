@@ -53,9 +53,30 @@ li a {
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
+/* Change the link color to red on hover */
 li a:hover {
-    background-color: skyblue;
+    background-color: red;
 }
 }
 
+
+#sub-header ul li:hover a,
+body.home li.home a, {background-color: red}
+body.contact li.contact { background-color: red;
+}
+
+#sub-header ul li:hover a,
+body.home li.home a, { background-color: red 
+
+}
+body.page2 li.page2 a { color: #fff;
+						background-color: red 
+}
+body.page3 li.page3 a { color: #fff;
+						background-color: red 
+
+}
+body.page4 li.page4 a { color: #fff;
+						background-color: red 
+
+}
