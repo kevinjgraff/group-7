@@ -46,18 +46,31 @@ class ResultsHandler(webapp2.RequestHandler):
 		url_params = {'titles': self.request.get('query'), 'action': 'query', 'prop' : 'revisions', 'rvprop' : 'content' , 'format' : 'json'}
 		#response = urllib2.urlopen("https://en.wikipedia.org/w/api.php? action=query &titles=Main%20Page &prop=revisions &rvprop=content &format=json")
 		resource = base_url + urllib.urlencode(url_params)
-		print resource
+		#print resource
+
 		response = urllib2.urlopen(resource)
 		content = response.read()
-		print content
+		#print content
 		content_obj = json.loads(content)
-		print ""
-		print ""
-		print "Here is my content_obj"
-		print content_obj
+
+		variable_id = 0
+
+		for pages in content_obj['query']['pages']:
+			variable_id = pages
+			print variable_id
+			break 
+		
+
+		#for key in content_obj['query']['pages']['variable_id']['revisions'][0]['*']:
+		#	game_page = key
+
+		wiki_begin_page = content_obj['query']['pages'][variable_id]['revisions'][0]['*']
+		print 'test'
+		
+		
 
 		template = env.get_template('results.html')
-		self.response.write(template.render(content_obj))
+		self.response.write(template.render())
 
 class Page2Handler(webapp2.RequestHandler):
 	def get(self):

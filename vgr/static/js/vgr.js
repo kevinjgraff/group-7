@@ -5,7 +5,7 @@
     function(){ return "http://www.wikipedia.org" + $(this).attr("href");}); 
     $("#information").find("a").attr("target", "_blank"); });
  
- //$(.getJSON("http://en.wikipedia.org/w/api.php?action=parse&format=json&callback=?", {page:pageName, prop:"text"}, wikipediaHTMLResult);)
+ // $(.getJSON("http://en.wikipedia.org/w/api.php?action=parse&format=json&callback=?", {page:pageName, prop:"text"}, wikipediaHTMLResult);)
 
   function something(){
 	window.location.replace('/results')
