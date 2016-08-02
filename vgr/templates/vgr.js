@@ -2,4 +2,3 @@
     $("#information").html(json.parse(text['*'])); 
     $("#information").find("a:not(.references a)").attr("href", function(){ return "http://www.wikipedia.org" + $(this).attr("href");}); 
     $("#information").find("a").attr("target", "_blank"); 
-  });
