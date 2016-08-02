@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2007 Google Inc.
+# Copyright 2007 Google Inc.https://plus.google.com/u/0/communities/111325756615618650782?cfem=1
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,11 +17,40 @@
 import webapp2
 import jinja2
 import json
+import os
+
+env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        template = env.get_template('vgr.html')
+        self.response.out.write(template.render())
+
+class ResultsHandler(webapp2.RequestHandler):
+	def get(self):
+		
+		template = env.get_template('results.html')
+		self.response.write(template.render())
+
+class Page2Handler(webapp2.RequestHandler):
+	def get(self):
+		template = env.get_template('page2.html')
+		self.response.write(template.render())
+
+class Page3Handler(webapp2.RequestHandler):
+	def get(self):
+		template = env.get_template('page3.html')
+		self.response.write(template.render())
+
+class Page4Handler(webapp2.RequestHandler):
+	def get(self):
+		template = env.get_template('page4.html')
+		self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/page2', Page2Handler),
+    ('/page3', Page3Handler),
+    ('/page4', Page4Handler),
+    ('/results', ResultsHandler)
 ], debug=True)

@@ -5,3 +5,19 @@
   // });
 
   // 
+
+//   $("#navbar > ul > li").click(function(){
+//     $("#navbar > ul > li").removeClass("active");
+//     $(this).addClass('active');
+// });
+
+  function something(){
+	window.location.replace('/results')
+  }
+
+
+  function setup(){
+	$('#submit').click(something)
+  }
+
+$(document).ready(setup)
