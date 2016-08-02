@@ -18,6 +18,8 @@ import webapp2
 import jinja2
 import json
 import os
+import urllib2
+import urllib
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
@@ -28,9 +30,20 @@ class MainHandler(webapp2.RequestHandler):
 
 class ResultsHandler(webapp2.RequestHandler):
 	def get(self):
-		
+		#base_url = 'https://en.wikipedia.org/w/api.php?'
+		#url_params = {'q': self.request.get('query'), 'action': 'query', , 'format' : 'json'}
+		response = urllib2.urlopen("https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json")
+		content = response.read()
+		print content
+		content_obj = json.loads(content)
+		print ""
+		print ""
+		print "Here is my content_obj"
+		print content_obj
+
+
 		template = env.get_template('results.html')
-		self.response.write(template.render())
+		self.response.write(template.render(content_obj))
 
 class Page2Handler(webapp2.RequestHandler):
 	def get(self):
