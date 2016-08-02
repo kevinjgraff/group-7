@@ -28,7 +28,6 @@ class MainHandler(webapp2.RequestHandler):
 
 class ResultsHandler(webapp2.RequestHandler):
 	def get(self):
-		
 		template = env.get_template('results.html')
 		self.response.write(template.render())
 
