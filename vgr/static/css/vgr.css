@@ -50,11 +50,11 @@ ul {
     background-size: 50%
 }
 
-li {
+ul li {
     float: left;
 }
 
-li a {
+ul li a {
     display: block;
     color: white;
     text-align: center;

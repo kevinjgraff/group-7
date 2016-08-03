@@ -29,17 +29,17 @@
 		<div id="information"> 
 		</div>
 	</form>
-	<h2 class="content">
+	<div class="content">
 		
-	
-	<ol>
-		{% for name in style_key %}
-		<li>
-			<br> {{name['name']}} 
-		{% endfor %}
-		</li>
-	</ol>
-	</h2>
+		<ol>
+			{% for name in style_key %}
+			<li>
+				 {{name['name']}} 
+			</li>
+			{% endfor %}
+		</ol>
+
+	</div>
 	<!-- </div> -->
 </body>
 
