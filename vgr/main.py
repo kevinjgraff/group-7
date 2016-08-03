@@ -73,7 +73,11 @@ class ResultsHandler(webapp2.RequestHandler):
 			('X-Mashape-Key', '5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc'),
 			("Accept", "application/json")
 		]
-		response = opener.open('https://igdbcom-internet-game-database-v1.p.mashape.com/genres/')
+		base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/?'
+		url_params = {'fields' : 'name', 'limit' : '10','offset' : '0','order' : 'release_dates.date:desc','search' : self.request.get("query")}
+		#response = opener.open('https://igdbcom-internet-game-database-v1.p.mashape.com/games/?')
+		response =opener.open( base_url + urllib.urlencode(url_params))
+		print response
 		 # response = unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?fields=*&limit=40",
  		# headers ={  "X-Mashape-Key": "5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc"}  )
   		content = response.read()
