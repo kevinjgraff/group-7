@@ -47,34 +47,26 @@ class ResultsHandler(webapp2.RequestHandler):
 		#response = urllib2.urlopen("https://en.wikipedia.org/w/api.php? action=query &titles=Main%20Page &prop=revisions &rvprop=content &format=json")
 		resource = base_url + urllib.urlencode(url_params)
 		#print resource
-
 		response = urllib2.urlopen(resource)
 		content = response.read()
 		#print content
 		content_obj = json.loads(content)
-
 		variable_id = 0
-
 		for pages in content_obj['query']['pages']:
 			variable_id = pages
 			break 
-
-
 		#for key in content_obj['query']['pages']['variable_id']['revisions'][0]['*']:
 		#	game_page = key
 		print variable_id
 		wiki_begin_page = content_obj['query']['pages'][variable_id]['revisions'][0]['*']
 		print 'test'
 		print wiki_begin_page
-		
 		genreIndex = wiki_begin_page.find("genre")
-
 		print wiki_begin_page[genreIndex:genreIndex+100]
-
 		genreUnformatted = wiki_begin_page[genreIndex : genreIndex + 200]
 		genre = genreUnformatted[ (genreUnformatted.find("|")+1) : genreUnformatted.find("]")]
-
 		print genre
+
 
 		template = env.get_template('results.html')
 		self.response.write(template.render())
