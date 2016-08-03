@@ -25,49 +25,22 @@ from google.appengine.api import users
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
+
+def get_login_link(users):
+	user = users.get_current_user()
+	if user:
+		return {'greeting': 'Welcome, %s!' % user.nickname(), 'link': users.create_logout_url('/')}
+	return {'greeting': 'Sign In or Register', 'link': users.create_login_url('/')}
+
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
 		template = env.get_template('vgr.html')
-		user = users.get_current_user()
-		if user:
-			greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-				(user.nickname(), users.create_logout_url('/')))
-		else:
-			greeting = ('<a href="%s"> Sign in or register</a>' %
-				users.create_login_url('/'))
 
-		user_data = {'user':greeting}
 		# self.response.out.write('<html><body>%s</body></html>' % greeting)
-		self.response.out.write(template.render(user_data))
+		self.response.out.write(template.render(get_login_link(users)))
 
 class ResultsHandler(webapp2.RequestHandler):
-	def get(self):
-
-		'''base_url = 'https://en.wikipedia.org/w/api.php?'
-		url_params = {'titles': self.request.get('query'), 'action': 'query', 'prop' : 'revisions', 'rvprop' : 'content' , 'format' : 'json'}
-		#response = urllib2.urlopen("https://en.wikipedia.org/w/api.php? action=query &titles=Main%20Page &prop=revisions &rvprop=content &format=json")
-		resource = base_url + urllib.urlencode(url_params)
-		#print resource
-		response = urllib2.urlopen(resource)
-		content = response.read()
-		#print content
-		content_obj = json.loads(content)
-		variable_id = 0
-		for pages in content_obj['query']['pages']:
-			variable_id = pages
-			break 
-		#for key in content_obj['query']['pages']['variable_id']['revisions'][0]['*']:
-		#	game_page = key
-		print variable_id
-		wiki_begin_page = content_obj['query']['pages'][variable_id]['revisions'][0]['*']
-		print 'test'
-		print wiki_begin_page
-		genreIndex = wiki_begin_page.find("genre")
-		print wiki_begin_page[genreIndex:genreIndex+100]
-		genreUnformatted = wiki_begin_page[genreIndex : genreIndex + 200]
-		genre = genreUnformatted[ (genreUnformatted.find("|")+1) : genreUnformatted.find("]")]
-		print genre'''
-
+	def get_game_list(self):
 		opener = urllib2.build_opener()
 		opener.addheaders = [
 			('X-Mashape-Key', '5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc'),
@@ -76,19 +49,15 @@ class ResultsHandler(webapp2.RequestHandler):
 		base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/?'
 		url_params = {'fields' : 'name', 'limit' : '20','offset' : '0','order' : 'release_dates.date:desc','search' : self.request.get("query")}
 		#response = opener.open('https://igdbcom-internet-game-database-v1.p.mashape.com/games/?')
-		response =opener.open( base_url + urllib.urlencode(url_params))
-		print response
+		response = opener.open(base_url + urllib.urlencode(url_params))
 		 # response = unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?fields=*&limit=40",
  		# headers ={  "X-Mashape-Key": "5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc"}  )
-  		content = response.read()
-  		print ""
-  		print ""
-  		print "The content is"
-  		print content
+  		return response.read()
 
-
-  		content_obj = json.loads(content)
+	def get(self):
+  		content_obj = json.loads(self.get_game_list())
   		style_content = {'style_key': content_obj}
+  		style_content.update(get_login_link(users))
 
 		#style_content = {'style_key': names}
 		template = env.get_template('results.html')
@@ -98,17 +67,17 @@ class ResultsHandler(webapp2.RequestHandler):
 class NewsHandler(webapp2.RequestHandler):
 	def get(self):
 		template = env.get_template('news.html')
-		self.response.write(template.render())
+		self.response.write(template.render(get_login_link(users)))
 
 class ContactHandler(webapp2.RequestHandler):
 	def get(self):
 		template = env.get_template('contact.html')
-		self.response.write(template.render())
+		self.response.write(template.render(get_login_link(users)))
 
 class AboutHandler(webapp2.RequestHandler):
 	def get(self):
 		template = env.get_template('about.html')
-		self.response.write(template.render())
+		self.response.write(template.render(get_login_link(users)))
 
 
 app = webapp2.WSGIApplication([

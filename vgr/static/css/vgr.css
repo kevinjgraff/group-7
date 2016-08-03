@@ -13,6 +13,14 @@
  	background-image: url("https://cdn-images-1.medium.com/max/1190/1*bD9nGMBuGWBdawdmrMmzVA.png")
 }
 
+a {
+	color: white;
+}
+
+#sign_in {
+	float: right;
+}
+
 .background {
   background: url(klematis.jpg) repeat;
   border: 2px solid black;

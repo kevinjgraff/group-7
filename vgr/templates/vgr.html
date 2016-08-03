@@ -16,14 +16,11 @@ Accept": "application/json
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body class='home'>
-	<!-- Contains dictionary with user data -->
-	<div class="sign_In">
-	{{user}}
-	</div>
+
 	<!-- Sets the gaming background for the entire html page-->
 	<div class="backgroundImage">
 		<!-- Allows user input to search -->
-
+		{% include 'navbar.html' %}
 		<form method="get" action='/results'>
 			<!-- Creates the GameRec title image -->
 			<img id = "gamerec" src="../static/images/GameRec.png" alt="gameRec" height="130" width="150">
@@ -34,10 +31,7 @@ Accept": "application/json
 				<input id= "submit" type="submit" name="submit"></input>
 				</div>
 			<!-- Navigation bar elements -->
-			{% include 'navbar.html' %}
-			<!-- Wikipedia API generate info -->
-			<div id="information"> 
-			</div>
+			
 		</form>
 	</div>
 	<script>
