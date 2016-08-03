@@ -68,15 +68,32 @@ class ResultsHandler(webapp2.RequestHandler):
 		genre = genreUnformatted[ (genreUnformatted.find("|")+1) : genreUnformatted.find("]")]
 		print genre'''
 
-		response = urllib2.urlopen('https://igdbcom-internet-game-database-v1.p.mashape.com/genres/')
-		# response = unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?fields=*&limit=40",
- 	# 		headers ={  "X-Mashape-Key": "5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc"}  )
+		opener = urllib2.build_opener()
+		opener.addheaders = [
+			('X-Mashape-Key', '5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc'),
+			("Accept", "application/json")
+		]
+		base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/?'
+		url_params = {'fields' : 'name', 'limit' : '20','offset' : '0','order' : 'release_dates.date:desc','search' : self.request.get("query")}
+		#response = opener.open('https://igdbcom-internet-game-database-v1.p.mashape.com/games/?')
+		response =opener.open( base_url + urllib.urlencode(url_params))
+		print response
+		 # response = unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?fields=*&limit=40",
+ 		# headers ={  "X-Mashape-Key": "5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc"}  )
   		content = response.read()
+  		print ""
+  		print ""
+  		print "The content is"
+  		print content
+
+
   		content_obj = json.loads(content)
+  		style_content = {'style_key': content_obj}
 
-
+		#style_content = {'style_key': names}
 		template = env.get_template('results.html')
-		self.response.write(template.render(content_obj))
+
+		self.response.write(template.render(style_content))
 
 class NewsHandler(webapp2.RequestHandler):
 	def get(self):

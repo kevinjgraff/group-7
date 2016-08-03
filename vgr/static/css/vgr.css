@@ -9,9 +9,10 @@
  	background-color: lightblue 
  }
 
- body {
+/* body {
  	background-image: url("https://cdn-images-1.medium.com/max/1190/1*bD9nGMBuGWBdawdmrMmzVA.png")
-}
+}*/
+
 #search { 
 	position: absolute;
 	left: 25%;
@@ -35,7 +36,15 @@
  	color: white;
  }
 
+<<<<<<< HEAD
 ul.main{
+=======
+ .content{
+ 	color: blue;
+ }
+
+ul {
+>>>>>>> origin/master
     list-style-type: none;
     margin: 0;
     margin-right: 50;
@@ -45,11 +54,19 @@ ul.main{
     background-size: 50%
 }
 
+<<<<<<< HEAD
 li.main {
     float: left;
 }
 
 a.main {
+=======
+ul li {
+    float: left;
+}
+
+ul li a {
+>>>>>>> origin/master
     display: block;
     color: white;
     text-align: center;
