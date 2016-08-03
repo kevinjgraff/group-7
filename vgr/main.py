@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 import webapp2
 import jinja2
 import json
@@ -42,7 +43,7 @@ class MainHandler(webapp2.RequestHandler):
 class ResultsHandler(webapp2.RequestHandler):
 	def get(self):
 
-		base_url = 'https://en.wikipedia.org/w/api.php?'
+		'''base_url = 'https://en.wikipedia.org/w/api.php?'
 		url_params = {'titles': self.request.get('query'), 'action': 'query', 'prop' : 'revisions', 'rvprop' : 'content' , 'format' : 'json'}
 		#response = urllib2.urlopen("https://en.wikipedia.org/w/api.php? action=query &titles=Main%20Page &prop=revisions &rvprop=content &format=json")
 		resource = base_url + urllib.urlencode(url_params)
@@ -65,11 +66,17 @@ class ResultsHandler(webapp2.RequestHandler):
 		print wiki_begin_page[genreIndex:genreIndex+100]
 		genreUnformatted = wiki_begin_page[genreIndex : genreIndex + 200]
 		genre = genreUnformatted[ (genreUnformatted.find("|")+1) : genreUnformatted.find("]")]
-		print genre
+		print genre'''
+
+		response = urllib2.urlopen('https://igdbcom-internet-game-database-v1.p.mashape.com/genres/')
+		# response = unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?fields=*&limit=40",
+ 	# 		headers ={  "X-Mashape-Key": "5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc"}  )
+  		content = response.read()
+  		content_obj = json.loads(content)
 
 
 		template = env.get_template('results.html')
-		self.response.write(template.render())
+		self.response.write(template.render(content_obj))
 
 class Page2Handler(webapp2.RequestHandler):
 	def get(self):
