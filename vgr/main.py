@@ -68,12 +68,20 @@ class ResultsHandler(webapp2.RequestHandler):
 		genre = genreUnformatted[ (genreUnformatted.find("|")+1) : genreUnformatted.find("]")]
 		print genre'''
 
-		response = urllib2.urlopen('https://igdbcom-internet-game-database-v1.p.mashape.com/genres/')
-		# response = unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?fields=*&limit=40",
- 	# 		headers ={  "X-Mashape-Key": "5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc"}  )
+		opener = urllib2.build_opener()
+		opener.addheaders = [
+			('X-Mashape-Key', '5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc'),
+			("Accept", "application/json")
+		]
+		response = opener.open('https://igdbcom-internet-game-database-v1.p.mashape.com/genres/')
+		 # response = unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?fields=*&limit=40",
+ 		# headers ={  "X-Mashape-Key": "5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc"}  )
   		content = response.read()
+  		print ""
+  		print ""
+  		print "The content is"
+  		print content
   		content_obj = json.loads(content)
-
 
 		template = env.get_template('results.html')
 		self.response.write(template.render(content_obj))
