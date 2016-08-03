@@ -9,9 +9,26 @@
  	background-color: lightblue 
  }
 
-/* body {
+ body {
  	background-image: url("https://cdn-images-1.medium.com/max/1190/1*bD9nGMBuGWBdawdmrMmzVA.png")
-}*/
+}
+
+.background {
+  background: url(klematis.jpg) repeat;
+  border: 2px solid black;
+  background-color: grey;
+  opacity: 0.9;
+}
+
+.transbox {
+  margin: 30px;
+  margin-right: 20px;
+  background-color: #575757;
+  border: 1px solid black;
+  opacity: 0.8;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
 
 #search { 
 	position: absolute;
@@ -36,15 +53,8 @@
  	color: white;
  }
 
-<<<<<<< HEAD
-ul.main{
-=======
- .content{
- 	color: blue;
- }
 
-ul {
->>>>>>> origin/master
+ul.main{
     list-style-type: none;
     margin: 0;
     margin-right: 50;
@@ -54,19 +64,19 @@ ul {
     background-size: 50%
 }
 
-<<<<<<< HEAD
+.content{
+	margin: 5%;
+	font-weight: bold;
+	color: white;
+	font-size: 18px;
+}
+
 li.main {
     float: left;
 }
 
-a.main {
-=======
-ul li {
-    float: left;
-}
+a.main{
 
-ul li a {
->>>>>>> origin/master
     display: block;
     color: white;
     text-align: center;
