@@ -9,9 +9,10 @@
  	background-color: lightblue 
  }
 
- body {
+/* body {
  	background-image: url("https://cdn-images-1.medium.com/max/1190/1*bD9nGMBuGWBdawdmrMmzVA.png")
-}
+}*/
+
 #search { 
 	position: absolute;
 	left: 25%;
@@ -33,6 +34,10 @@
 
  .sign_In{
  	color: white;
+ }
+
+ .content{
+ 	color: blue;
  }
 
 ul {

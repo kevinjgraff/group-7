@@ -74,7 +74,7 @@ class ResultsHandler(webapp2.RequestHandler):
 			("Accept", "application/json")
 		]
 		base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/?'
-		url_params = {'fields' : 'name', 'limit' : '10','offset' : '0','order' : 'release_dates.date:desc','search' : self.request.get("query")}
+		url_params = {'fields' : 'name', 'limit' : '20','offset' : '0','order' : 'release_dates.date:desc','search' : self.request.get("query")}
 		#response = opener.open('https://igdbcom-internet-game-database-v1.p.mashape.com/games/?')
 		response =opener.open( base_url + urllib.urlencode(url_params))
 		print response
@@ -85,10 +85,15 @@ class ResultsHandler(webapp2.RequestHandler):
   		print ""
   		print "The content is"
   		print content
-  		content_obj = json.loads(content)
 
+
+  		content_obj = json.loads(content)
+  		style_content = {'style_key': content_obj}
+
+		#style_content = {'style_key': names}
 		template = env.get_template('results.html')
-		self.response.write(template.render(content_obj))
+
+		self.response.write(template.render(style_content))
 
 class Page2Handler(webapp2.RequestHandler):
 	def get(self):
