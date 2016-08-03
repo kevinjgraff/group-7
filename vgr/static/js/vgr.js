@@ -17,3 +17,5 @@
   }
 
   $(document).ready(setup)
+
+  $('#page4').fadeOut(4000, 'swing');

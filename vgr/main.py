@@ -78,26 +78,26 @@ class ResultsHandler(webapp2.RequestHandler):
 		template = env.get_template('results.html')
 		self.response.write(template.render(content_obj))
 
-class Page2Handler(webapp2.RequestHandler):
+class NewsHandler(webapp2.RequestHandler):
 	def get(self):
-		template = env.get_template('page2.html')
+		template = env.get_template('news.html')
 		self.response.write(template.render())
 
-class Page3Handler(webapp2.RequestHandler):
+class ContactHandler(webapp2.RequestHandler):
 	def get(self):
-		template = env.get_template('page3.html')
+		template = env.get_template('contact.html')
 		self.response.write(template.render())
 
-class Page4Handler(webapp2.RequestHandler):
+class AboutHandler(webapp2.RequestHandler):
 	def get(self):
-		template = env.get_template('page4.html')
+		template = env.get_template('about.html')
 		self.response.write(template.render())
 
 
 app = webapp2.WSGIApplication([
 	('/', MainHandler),
-	('/page2', Page2Handler),
-	('/page3', Page3Handler),
-	('/page4', Page4Handler),
+	('/news', NewsHandler),
+	('/contact', ContactHandler),
+	('/about', AboutHandler),
 	('/results', ResultsHandler)
 ], debug=True)

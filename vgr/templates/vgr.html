@@ -29,17 +29,15 @@
 				<input id= "submit" type="submit" name="submit"></input>
 				</div>
 			<!-- Navigation bar elements -->
-			<ul>
-				<li class='home'><a href="/">Home</a></li>
-				<li><a href="page2">News</a></li>
-				<li><a href="page3">Contact</a></li>
-				<li><a href="page4">About</a></li>
-			</ul>
+			{% include 'navbar.html' %}
 			<!-- Wikipedia API generate info -->
 			<div id="information"> 
 			</div>
 		</form>
 	</div>
+	<script>
+		$('#home').addClass("current_page");
+	</script>
 </body>
 
 </html>
