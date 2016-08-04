@@ -21,6 +21,15 @@ a {
 	float: right;
 }
 
+.nameColor {
+	color: white;
+}
+
+.summaryColor {
+	color: white;
+	font-size: 20px;
+}
+
 .background {
   background: url(klematis.jpg) repeat;
   border: 2px solid black;

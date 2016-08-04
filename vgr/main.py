@@ -76,15 +76,13 @@ class ResultsHandler(webapp2.RequestHandler):
 
 class RecHandler(webapp2.RequestHandler):
 	def get(self):
-		# content_obj = json.loads()
-  # 		style_content = {'style_key': content_obj}
-  # 		style_content.update(get_login_link(users)
+  		# style_content.update(get_login_link(users)
 		template = env.get_template('info.html')
 		# game_id = self.request.get('id')
 		# game_name = self.request.get('name')
 		# game_story = self.request.get('summary')
 		# data = {'id': game_id, 'name' :game_name, 'summary': game_story}
-  # 		data.update(get_login_link(users))
+  		# data.update(get_login_link(users))
 
   		opener = urllib2.build_opener()
 		opener.addheaders = [
@@ -119,6 +117,7 @@ class RecHandler(webapp2.RequestHandler):
   			rec_list.append(game_info_from_id(str(rec)))
 
   		print rec_list
+		
 
 
 		template_data = {
