@@ -21,17 +21,16 @@
 			{% include 'navbar.html' %}
 
 			<div class="content">
-					{{id}}
-					{{name}}
-					{{summary}}
-
-					{% for rec in rec_list %}
-					<li>
 					
-						{{rec[0]['name']}}
 
+					{% for rec in rec_info %}
+					<li>
+						<ol class= summaryColor>
+						{{rec[0]['name']}}
+						</ol>
 					</li>
 					{% endfor %}
+
 			{% for result in results %}
 			<div class="summaryColor">
 				<a href="info?id={{result['id']}}"></a>

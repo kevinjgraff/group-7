@@ -100,8 +100,10 @@ class RecHandler(webapp2.RequestHandler):
 		
 		game_content_obj = game_info_from_id(self.request.get('id'))
 		genre = game_content_obj[0]['genres'][0]
+
 		print "Genre is"
 		print genre
+
 		genre_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/genres/' + str(genre) + '?'
 		genre_url_params = {'fields' : '*', 'limit' : '10' }
 		genre_response = opener.open(genre_url + urllib.urlencode(genre_url_params)).read()
@@ -116,10 +118,9 @@ class RecHandler(webapp2.RequestHandler):
   		for rec in rec_id_list:
   			rec_list.append(game_info_from_id(str(rec)))
 
+
   		print rec_list
-		
-
-
+  
 		template_data = {
 			'game_info': game_content_obj,
 			'genre_info': genre_content_obj,
