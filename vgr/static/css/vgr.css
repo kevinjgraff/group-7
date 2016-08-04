@@ -127,7 +127,7 @@ a.main:hover,a.main:active {
 	top: 18%;
 	width: 60%;
 	text-align: center; 
-	font-size: 14px;
+	font-size: 23px;
 	border: 5px solid #009999;
 	color:yellow;
  }
@@ -138,7 +138,7 @@ a.main:hover,a.main:active {
 	top: 45%;
 	width: 60%;
 	text-align: center; 
-	font-size: 14px;
+	font-size: 23px;
 	border: 5px solid #009999;
 	color: skyblue;
  }
@@ -149,7 +149,7 @@ a.main:hover,a.main:active {
 	top: 70%;
 	width: 60%;
 	text-align: center; 
-	font-size: 14px;
+	font-size: 23px;
 	border: 5px solid #009999;
 	color: pink ;
  }
