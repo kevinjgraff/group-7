@@ -21,6 +21,7 @@ import json
 import os
 import urllib2
 import urllib
+import random
 from google.appengine.api import users
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
@@ -48,7 +49,7 @@ class ResultsHandler(webapp2.RequestHandler):
 			("Accept", "application/json")
 		]
 		base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/?'
-		url_params = {'fields' : '*', 'limit' : '2','offset' : '0','order' : 'release_dates.date:desc','search' : self.request.get("query")}
+		url_params = {'fields' : '*', 'limit' : '25','offset' : '0','order' : 'release_dates.date:desc','search' : self.request.get("query")}
 		
 		# base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?'
 		# url_params = {'fields' : '*', 'limit' : '10' }
@@ -109,17 +110,20 @@ class RecHandler(webapp2.RequestHandler):
 		genre_response = opener.open(genre_url + urllib.urlencode(genre_url_params)).read()
 		genre_content_obj = json.loads(genre_response)
 
-  		print "Here is the genre obj "
-  		print genre_content_obj
+  		
 
-  		rec_id_list = genre_content_obj[0]['games'][0: 10]
+  		# len_of_genre_games = len(genre_content_obj[0]['games'])
+  		# rand_genre_games = random.sample(genre_content_obj[0]['games'], 20)
+
+  		# print len_of_genre_games
+  		# print rand_genre_games
+
+
+  		rec_id_list = rand_genre_games = random.sample(genre_content_obj[0]['games'], 20)
   		rec_list = []
 
   		for rec in rec_id_list:
   			rec_list.append(game_info_from_id(str(rec)))
-
-
-  		print rec_list
   
 		template_data = {
 			'game_info': game_content_obj,
