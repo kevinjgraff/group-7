@@ -11,9 +11,15 @@
 	window.location.replace('/results')
   }
 
+  function infoSomething(){
+  window.location.replace('/info')
+  }
+
+
 
   function setup(){
 	$('#submit').click(something)
+  $('#submitInfo').click(infoSomething)
   }
 
   $(document).ready(setup)

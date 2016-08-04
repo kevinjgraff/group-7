@@ -19,25 +19,29 @@
 	<div class="background">
 		<div class="transbox">
 			{% include 'navbar.html' %}
-			<form method="get" action='/results'>
-			<input id= "searchResult" type="text" name= "query" >
-			<input id= "submitResult" type="submit" name="submit"></input>
 			<div class="content">
 				<ol>
 					{% for i in style_key %}
-					<li>
+					<ul>
 						{{i['id']}} 
-						<div class="submitInfo">
-						<a href="info"> {{i['name']}}</a>
-						</div>
+						{{i['name']}} 
+						{{i['storyline']}} 
 						{{i['genres']}} 
+					</ul>
+					{% endfor %} 
+					
+					<!-- {% for i in style_key %}
+					<li>
+						{{i['name']}} 
+						{{i['games'][0: 10]}} 
+
 						
 					</li>
-					{% endfor %} 
+					{% endfor %} -->
+
 				</ol>
 			</div>
 		</div>
-		</form>
 	</div>
 </body>
 </html>

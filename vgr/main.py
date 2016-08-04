@@ -47,22 +47,36 @@ class ResultsHandler(webapp2.RequestHandler):
 			("Accept", "application/json")
 		]
 		base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/?'
-		url_params = {'fields' : 'name', 'limit' : '20','offset' : '0','order' : 'release_dates.date:desc','search' : self.request.get("query")}
-		#response = opener.open('https://igdbcom-internet-game-database-v1.p.mashape.com/games/?')
+		url_params = {'fields' : '*', 'limit' : '2','offset' : '0','order' : 'release_dates.date:desc','search' : self.request.get("query")}
+		
+		# base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?'
+		# url_params = {'fields' : '*', 'limit' : '10' }
+
 		response = opener.open(base_url + urllib.urlencode(url_params))
-		 # response = unirest.get("https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?fields=*&limit=40",
- 		# headers ={  "X-Mashape-Key": "5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc"}  )
   		return response.read()
 
 	def get(self):
   		content_obj = json.loads(self.get_game_list())
   		style_content = {'style_key': content_obj}
   		style_content.update(get_login_link(users))
+  # 		result_list = []
+  # 		for i in style_content:
+  # 			storing_dict = { "i['id']" : [ "i['name']", "i['genres']" ]  }
+		# 	result_list.append( storing_dict )
+		# 	# {{i['id']}} 
+		# 	# {{i['name']}} 
+		# 	# {{i['genres']}} 
+		# print result_list
 
 		#style_content = {'style_key': names}
 		template = env.get_template('results.html')
 
 		self.response.write(template.render(style_content))
+
+class RecHandler(webapp2.RequestHandler):
+	def get(self):
+		template = env.get_template('info.html')
+		self.response.write(template.render(get_login_link(users)))
 
 class NewsHandler(webapp2.RequestHandler):
 	def get(self):
@@ -85,5 +99,7 @@ app = webapp2.WSGIApplication([
 	('/news', NewsHandler),
 	('/contact', ContactHandler),
 	('/about', AboutHandler),
-	('/results', ResultsHandler)
+	('/results', ResultsHandler),
+	('/info', RecHandler)
+
 ], debug=True)
