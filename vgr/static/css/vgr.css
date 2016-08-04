@@ -42,7 +42,7 @@ a {
   margin-right: 20px;
   background-color: #575757;
   border: 1px solid black;
-  opacity: 0.8;
+  opacity: 0.95;
   filter: alpha(opacity=60); /* For IE8 and earlier */
 }
 
@@ -192,6 +192,6 @@ a.main:hover,a.main:active {
 	text-align: center; 
 	font-size: 50px;
 	border: 5px solid #009999;
-	color: skyblue;
+	color: orange;
 
 }
