@@ -23,6 +23,15 @@
 					{{id}}
 					{{name}}
 					{{summary}}
+
+					{% for rec in rec_list %}
+					<li>
+					
+						{{rec[0]['name']}}
+
+					</li>
+					{% endfor %}
+
 			</div>
 		</div>
 	</div>

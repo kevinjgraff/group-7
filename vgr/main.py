@@ -58,8 +58,8 @@ class ResultsHandler(webapp2.RequestHandler):
 
 	def get(self):
   		content_obj = json.loads(self.get_game_list())
-  		style_content = {'results': content_obj}
-  		style_content.update(get_login_link(users))
+  		template_data = {'results': content_obj}
+  		template_data.update(get_login_link(users))
   # 		result_list = []
   # 		for i in style_content:
   # 			storing_dict = { "i['id']" : [ "i['name']", "i['genres']" ]  }
@@ -72,7 +72,7 @@ class ResultsHandler(webapp2.RequestHandler):
 		#style_content = {'style_key': names}
 		template = env.get_template('results.html')
 
-		self.response.write(template.render(style_content))
+		self.response.write(template.render(template_data))
 
 class RecHandler(webapp2.RequestHandler):
 	def get(self):
@@ -91,19 +91,42 @@ class RecHandler(webapp2.RequestHandler):
 			('X-Mashape-Key', '5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc'),
 			("Accept", "application/json")
 		]
-		base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/' + self.request.get('id') + '?'
-		url_params = {'fields' : '*'}
+		def game_info_from_id(game_id):
+			game_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/' + game_id + '?'
+			game_url_params = {'fields' : '*'}
+			game_response = opener.open(game_url + urllib.urlencode(game_url_params)).read()
+	  		game_content_obj = json.loads(game_response)
+
+	  		return game_content_obj
+
 		
-		#base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?'
-		#url_params = {'fields' : '*', 'limit' : '10' }
+		game_content_obj = game_info_from_id(self.request.get('id'))
+		genre = game_content_obj[0]['genres'][0]
+		print "Genre is"
+		print genre
+		genre_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/genres/' + str(genre) + '?'
+		genre_url_params = {'fields' : '*', 'limit' : '10' }
+		genre_response = opener.open(genre_url + urllib.urlencode(genre_url_params)).read()
+		genre_content_obj = json.loads(genre_response)
 
-		response = opener.open(base_url + urllib.urlencode(url_params))
-  		content_obj = response.read()
-  		style_content = {'results': content_obj}
-  		print content_obj
+  		print "Here is the genre obj "
+  		print genre_content_obj
+
+  		rec_id_list = genre_content_obj[0]['games'][0: 10]
+  		rec_list = []
+
+  		for rec in rec_id_list:
+  			rec_list.append(game_info_from_id(str(rec)))
+
+  		print rec_list
 
 
-		self.response.write(template.render(style_content))
+		template_data = {
+			'game_info': game_content_obj,
+			'genre_info': genre_content_obj,
+			'rec_info' : rec_list
+		}
+		self.response.write(template.render(template_data))
 
 class NewsHandler(webapp2.RequestHandler):
 	def get(self):
