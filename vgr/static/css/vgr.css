@@ -97,30 +97,61 @@ a.main:hover,a.main:active {
     background-color: red;
 }
 
-ul.home {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 6%;
-    background-color: blue;
-    left: 70%;
-}
-
-a.home {
-    display: block;
-    color: #000;
-    padding: 8px 16px;
-    text-decoration: none;
-}
-
-/* Change the link color on hover */
-a.home:hover {
-    background-color: red;
-    color: black;
-}
-
-
 
 .current_page a { background-color: red 
 
 }
+
+.HayleyProfile{ 
+	position: absolute;
+	left: 35%;
+	top: 18%;
+	width: 60%;
+	text-align: center; 
+	font-size: 14px;
+	border: 5px solid #009999;
+	color:yellow;
+ }
+
+ .KleverProfile{ 
+	position: absolute;
+	left: 1%;
+	top: 45%;
+	width: 60%;
+	text-align: center; 
+	font-size: 14px;
+	border: 5px solid #009999;
+	color: skyblue;
+ }
+
+  .KevinProfile{ 
+	position: absolute;
+	left: 35%;
+	top: 70%;
+	width: 60%;
+	text-align: center; 
+	font-size: 14px;
+	border: 5px solid #009999;
+	color: pink ;
+ }
+
+ .kevin {
+	position: absolute;
+	left: 10%;
+	top: 72%;
+ 	border: 5px solid #009999;
+ }
+
+ .klever {
+	position: absolute;
+	left: 74%;
+	top: 45%;
+ 	border: 5px solid #009999;
+ }
+
+ .hayley {
+	position: absolute;
+	left: 10%;
+	top: 18%;
+ 	border: 5px solid #009999;
+ }
