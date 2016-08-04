@@ -80,10 +80,30 @@ class RecHandler(webapp2.RequestHandler):
   # 		style_content = {'style_key': content_obj}
   # 		style_content.update(get_login_link(users)
 		template = env.get_template('info.html')
-		game_id = self.request.get('id')
-		data = {'id': game_id}
-  		data.update(get_login_link(users))
-		self.response.write(template.render(data))
+		# game_id = self.request.get('id')
+		# game_name = self.request.get('name')
+		# game_story = self.request.get('summary')
+		# data = {'id': game_id, 'name' :game_name, 'summary': game_story}
+  # 		data.update(get_login_link(users))
+
+  		opener = urllib2.build_opener()
+		opener.addheaders = [
+			('X-Mashape-Key', '5XH95HRAqnmshOFldbKVy1WQBBRZp1qTQT6jsnexDxNpTGGbnc'),
+			("Accept", "application/json")
+		]
+		base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/games/' + self.request.get('id') + '?'
+		url_params = {'fields' : '*'}
+		
+		#base_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/genres/?'
+		#url_params = {'fields' : '*', 'limit' : '10' }
+
+		response = opener.open(base_url + urllib.urlencode(url_params))
+  		content_obj = response.read()
+  		style_content = {'results': content_obj}
+  		print content_obj
+
+
+		self.response.write(template.render(style_content))
 
 class NewsHandler(webapp2.RequestHandler):
 	def get(self):
