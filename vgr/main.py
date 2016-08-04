@@ -40,6 +40,7 @@ class MainHandler(webapp2.RequestHandler):
 		self.response.out.write(template.render(get_login_link(users)))
 
 class ResultsHandler(webapp2.RequestHandler):
+	
 	def get_game_list(self):
 		opener = urllib2.build_opener()
 		opener.addheaders = [
@@ -57,7 +58,7 @@ class ResultsHandler(webapp2.RequestHandler):
 
 	def get(self):
   		content_obj = json.loads(self.get_game_list())
-  		style_content = {'style_key': content_obj}
+  		style_content = {'results': content_obj}
   		style_content.update(get_login_link(users))
   # 		result_list = []
   # 		for i in style_content:
@@ -75,8 +76,14 @@ class ResultsHandler(webapp2.RequestHandler):
 
 class RecHandler(webapp2.RequestHandler):
 	def get(self):
+		# content_obj = json.loads()
+  # 		style_content = {'style_key': content_obj}
+  # 		style_content.update(get_login_link(users)
 		template = env.get_template('info.html')
-		self.response.write(template.render(get_login_link(users)))
+		game_id = self.request.get('id')
+		data = {'id': game_id}
+  		data.update(get_login_link(users))
+		self.response.write(template.render(data))
 
 class NewsHandler(webapp2.RequestHandler):
 	def get(self):

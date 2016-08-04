@@ -20,26 +20,8 @@
 		<div class="transbox">
 			{% include 'navbar.html' %}
 			<div class="content">
-				<ol>
-					{% for i in style_key %}
-					<ul>
-						{{i['id']}} 
-						{{i['name']}} 
-						{{i['storyline']}} 
-						{{i['genres']}} 
-					</ul>
-					{% endfor %} 
-					
-					<!-- {% for i in style_key %}
-					<li>
-						{{i['name']}} 
-						{{i['games'][0: 10]}} 
-
-						
-					</li>
-					{% endfor %} -->
-
-				</ol>
+					{{id}}
+					{{storyline}}
 			</div>
 		</div>
 	</div>

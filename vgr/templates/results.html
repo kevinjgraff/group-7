@@ -24,14 +24,14 @@
 			<input id= "submitResult" type="submit" name="submit"></input>
 			<div class="content">
 				<ol>
-					{% for i in style_key %}
+					{% for result in results %}
 					<li>
-						{{i['id']}} 
 						<div class="submitInfo">
-						<a href="info"> {{i['name']}}</a>
+						<!--<a href="info?story={{result['storyline']}}"> </a>  -->
+						<a href="info?id={{result['id']}}"> {{result['name']}}</a> 
+
 						</div>
-						{{i['genres']}} 
-						
+						{{result['genres']}} 
 					</li>
 					{% endfor %} 
 				</ol>
