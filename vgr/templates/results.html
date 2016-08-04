@@ -19,6 +19,9 @@
 	<div class="background">
 		<div class="transbox">
 			{% include 'navbar.html' %}
+			<form method="get" action='/results'>
+			<input id= "searchResult" type="text" name= "query" >
+			<input id= "submitResult" type="submit" name="submit"></input>
 			<div class="content">
 				<ol>
 					{% for name in style_key %}
@@ -29,6 +32,7 @@
 				</ol>
 			</div>
 		</div>
+		</form>
 	</div>
 </body>
 </html>
