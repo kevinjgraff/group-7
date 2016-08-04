@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/vgr.css">
 	<script src="/static/js/vgr.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<img class='contactPic' src="static/images/contact.gif" style="background:#98bf21;height:100px;width:100px;position:absolute;top:13%;"> </img>
 </head>
 <body class="page4">
 	<!-- Sets the gaming background for the entire html page-->
@@ -17,9 +18,19 @@
 		{% include 'navbar.html' %}
 
 	</div>
+	<p class="contactInfo center background transbox"> If you have any questions or comments, contact us:<br>
+	Hayley's email: <strong>sbcj kbadjkcvbawbcuoaw</strong>
+	<br>
+	Klever's email: <strong>cdosuiacbwaduhcoasdhb</strong>
+	<br>
+	Kevin's email: <strong>dascouaduovcbadwjbvcu</strong>
+	</p>
 	 <script>
 		$('#about').addClass("current_page");
-		$('#aboutUs').addClass("current_page");
+        
+        $(document).ready(function(){
+        $('.contactPic').animate({left: '60%', height:'75%',width:'40%'},3000);
+});
 	 </script>
 </body>
 

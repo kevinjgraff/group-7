@@ -174,3 +174,15 @@ a.main:hover,a.main:active {
 	top: 18%;
  	border: 5px solid #009999;
  }
+
+.contactInfo {
+	position: absolute;
+	left: 1%;
+	top: 17%;
+	width: 45%;
+	text-align: center; 
+	font-size: 50px;
+	border: 5px solid #009999;
+	color: skyblue;
+
+}
