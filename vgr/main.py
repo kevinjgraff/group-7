@@ -96,11 +96,16 @@ class RecHandler(webapp2.RequestHandler):
 			game_response = opener.open(game_url + urllib.urlencode(game_url_params)).read()
 	  		game_content_obj = json.loads(game_response)
 
-	  		return game_content_obj
+	  		return game_content_obj[0]
 
 		
 		game_content_obj = game_info_from_id(self.request.get('id'))
-		genre = game_content_obj[0]['genres'][0]
+
+		print "Trying to get ID"
+		print self.request.get('id')
+		print game_content_obj
+
+		genre = game_content_obj['genres'][0]
 
 		print "Genre is"
 		print genre
@@ -118,6 +123,7 @@ class RecHandler(webapp2.RequestHandler):
   		# print len_of_genre_games
   		# print rand_genre_games
 
+  		# game_info['videos'][0]['video_id']
 
   		rec_id_list = rand_genre_games = random.sample(genre_content_obj[0]['games'], 20)
   		rec_list = []
@@ -125,7 +131,13 @@ class RecHandler(webapp2.RequestHandler):
   		for rec in rec_id_list:
   			rec_list.append(game_info_from_id(str(rec)))
   
+  		if 'videos' in game_content_obj and game_content_obj['videos']:
+	  		video_id=game_content_obj['videos'][0]['video_id']
+	  	else:
+	  		video_id=None
+
 		template_data = {
+			'video_id': video_id,
 			'game_info': game_content_obj,
 			'genre_info': genre_content_obj,
 			'rec_info' : rec_list
