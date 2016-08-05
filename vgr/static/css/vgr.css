@@ -28,6 +28,8 @@ a {
 .summaryColor {
 	color: white;
 	font-size: 20px;
+	left: 3%;
+	position: relative;
 }
 
 .background {
