@@ -19,8 +19,8 @@
 	<div class="background">
 		<div class="transbox">
 			{% include 'navbar.html' %}
-			<h3>{{game_info['name']}}</h3>
 			<div class="summaryColor">
+			<b><h2>{{game_info['name']}}</h2><b>
 				{% if game_info['summary'] %}
 				{{game_info['summary']}}
 				{% else %}

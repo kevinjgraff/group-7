@@ -107,6 +107,7 @@ class RecHandler(webapp2.RequestHandler):
 
 		genre = game_content_obj['genres'][0]
 
+
 		print "Genre is"
 		print genre
 
@@ -135,6 +136,7 @@ class RecHandler(webapp2.RequestHandler):
 	  		video_id=game_content_obj['videos'][0]['video_id']
 	  	else:
 	  		video_id=None
+
 
 		template_data = {
 			'video_id': video_id,
