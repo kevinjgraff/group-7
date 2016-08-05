@@ -9,9 +9,9 @@
  	background-color: lightblue 
  }
 
- /*body {
+ body {
  	background-image: url("https://cdn-images-1.medium.com/max/1190/1*bD9nGMBuGWBdawdmrMmzVA.png")
-}*/
+}
 
 a {
 	color: white;
@@ -44,6 +44,10 @@ a {
   border: 1px solid black;
   opacity: 0.95;
   filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+#newsTitle{
+	padding: 15px;
 }
 
 
@@ -89,7 +93,7 @@ a {
  	color: white;
  }
 
-ul.main{
+ul.gr_main{
     list-style-type: none;
     margin: 0;
     margin-right: 50;
@@ -107,11 +111,11 @@ ul.main{
 	font-size: 18px;
 }
 
-li.main {
+li.gr_main {
     float: left;
 }
 
-a.main{
+a.gr_main{
     display: block;
     color: white;
     text-align: center;
@@ -121,7 +125,7 @@ a.main{
 }
 
 /* Change the link color to red on hover */
-a.main:hover,a.main:active {
+a.gr_main:hover,a.main:active {
     background-color: red;
 }
 
@@ -196,4 +200,8 @@ a.main:hover,a.main:active {
 	color: white;
 
 
+}
+
+.news_header {
+	font-size: 60px;
 }

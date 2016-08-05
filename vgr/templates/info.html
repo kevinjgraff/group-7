@@ -19,19 +19,33 @@
 	<div class="background">
 		<div class="transbox">
 			{% include 'navbar.html' %}
+<<<<<<< HEAD
 			<div class="summaryColor">
 			<b><h2>{{game_info['name']}}</h2><b>
 				{% if game_info['summary'] %}
 				{{game_info['summary']}}
 				{% else %}
 				No summary was available for this game.
-				{% endif %}
-			</div>
+=======
+			
+				<h3>{{game_info['name']}}</h3>
+				<div class="summaryColor">
+					{% if game_info['summary'] %}
+					{{game_info['summary']}}
+					{% else %}
+					No summary was available for this game.
+					{% endif %}
+				</div>
 
-			{% if video_id %}
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{video_id}}" frameborder="0" allowfullscreen></iframe>
-			{% endif %}
-			<div class="content">
+				{% if video_id %}
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/{{video_id}}" frameborder="0" allowfullscreen></iframe>
+>>>>>>> origin/master
+				{% endif %}
+			
+
+			
+			
+			<div class="content ">
 
 				<h2> Here are some recommendations based on  the same Genre </h2>
 
@@ -46,6 +60,7 @@
 
 
 			</div>
+			
 		</div>
 	</div>
 </body>

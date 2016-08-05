@@ -70,10 +70,10 @@ a {
 
 .container > header,
 .content-wrapper {
-	padding: 30px;
+	padding: 50px;
 	width: 80%;
 	max-width: 960px;
-	margin: 0 auto;
+	margin: 50;
 }
 
 .content-wrapper p{
@@ -82,11 +82,11 @@ a {
 }
 
 .container > header h1 {
-	font-size: 34px;
+	font-size: 50px;
 	line-height: 38px;
 	margin: 0;
 	font-weight: 700;
-	color: #333;
+	color: white;
 	float: left;
 }
 
