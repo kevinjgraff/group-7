@@ -32,14 +32,16 @@
 				{% if video_id %}
 				<iframe width="560" height="315" src="https://www.youtube.com/embed/{{video_id}}" frameborder="0" allowfullscreen></iframe>
 				{% endif %}
-				
 
-				
-				
+
+
+
 				<div class="content ">
-
+					{% if rec_info %}
 					<h2> Here are some recommendations based on  the same Genre </h2>
-
+					{% else %}
+					<h2> Recommendations for this game are not available </h2>
+					{% endif %}
 					{% for rec in rec_info %}
 					<li>
 						<ol class= summaryColor>
@@ -51,7 +53,7 @@
 
 
 				</div>
-				
+
 			</div>
 		</div>
 	</body>

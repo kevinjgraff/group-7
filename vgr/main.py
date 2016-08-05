@@ -105,17 +105,21 @@ class RecHandler(webapp2.RequestHandler):
 		print self.request.get('id')
 		print game_content_obj
 
-		genre = game_content_obj['genres'][0]
+	  	if 'genres' in game_content_obj and game_content_obj['videos']:
+	  		genre = game_content_obj['genres'][0]
+	  		genre_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/genres/' + str(genre) + '?'
+			genre_url_params = {'fields' : '*', 'limit' : '10' }
+			genre_response = opener.open(genre_url + urllib.urlencode(genre_url_params)).read()
+			genre_content_obj = json.loads(genre_response)
+			rec_id_list = random.sample(genre_content_obj[0]['games'], 20)
+			rec_list = []
+			for rec in rec_id_list:
+  				rec_list.append(game_info_from_id(str(rec)))
+  
+	  	else:
+	  		rec_list=[]
 
-
-		print "Genre is"
-		print genre
-
-		genre_url = 'https://igdbcom-internet-game-database-v1.p.mashape.com/genres/' + str(genre) + '?'
-		genre_url_params = {'fields' : '*', 'limit' : '10' }
-		genre_response = opener.open(genre_url + urllib.urlencode(genre_url_params)).read()
-		genre_content_obj = json.loads(genre_response)
-
+		
   		
 
   		# len_of_genre_games = len(genre_content_obj[0]['games'])
@@ -126,12 +130,7 @@ class RecHandler(webapp2.RequestHandler):
 
   		# game_info['videos'][0]['video_id']
 
-  		rec_id_list = rand_genre_games = random.sample(genre_content_obj[0]['games'], 20)
-  		rec_list = []
 
-  		for rec in rec_id_list:
-  			rec_list.append(game_info_from_id(str(rec)))
-  
   		if 'videos' in game_content_obj and game_content_obj['videos']:
 	  		video_id=game_content_obj['videos'][0]['video_id']
 	  	else:
@@ -141,7 +140,7 @@ class RecHandler(webapp2.RequestHandler):
 		template_data = {
 			'video_id': video_id,
 			'game_info': game_content_obj,
-			'genre_info': genre_content_obj,
+			# 'genre_info': genre_content_obj, not used
 			'rec_info' : rec_list
 		}
 		self.response.write(template.render(template_data))
